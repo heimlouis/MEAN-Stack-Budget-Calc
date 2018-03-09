@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp"></html>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MEAN Stack App</title>
+
+    <!-- Make sure that Angular is in the public folder -->
+    <!-- Also, make sure that Angular is sourced before the client.js -->
+    <script src="/vendors/angular/angular.min.js"></script>
+    <!-- If Angular is not in public or sourced after client  -->
+
+    <!-- Without the Controller being sourced, you will get the following error - "Uncaught Error: [$injector:modulerr]" -->
+    <script src="/controllers/controller.js"></script>
+    
+    <!-- Src client.js -->
+    <script src="/scripts/client.js"></script>
+
+</head>
+<body>
+    <div class="container" ng-controller="AppCtrl">
+        <h1>Contact List</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Number</th>
+                    <th>Action</th>
+                    <th>&nbsp;</th>
+                    <!-- <br> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input class="form-control" ng-model="contact.name"></td>
+                    <td><input class="form-control" ng-model="contact.email"></td>
+                    <td><input class="form-control" ng-model="contact.number"></td>
+                    <td><button class="btn btn-primary" ng-click="addContact()">Add Contact</button></td>
+                    <td><button class="btn btn-info" ng-click="update()">Update</button></td>
+                </tr>
+                <!-- ng-repeat will copy the 3 objects into separate rows -->
+                <tr ng-repeat="contact in contactlist">
+                    <td>{{contact.name}}</td>
+                    <td>{{contact.email}}</td>
+                    <td>{{contact.number}}</td>
+                    <td><button class="btn btn-danger" ng-click="remove(contact._id)">Remove</button></td>
+                    <td><button class="btn btn-warning" ng-click="edit(contact._id)">Edit</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- angular - two way binding test -->
+        <!-- <input ng-model="test"> {{test}} -->
+        <!-- end angular two way binding test -->
+
+    </div>
+
+    <!-- If the CDN is used add it here to make it load faster, add angular at the bottom of the html -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> -->
+    <!-- End CDN -->
+</body>
+</html>
